@@ -20,16 +20,16 @@
     <div class="carousel-container" tabindex="0" role="region" aria-label="Image carousel">
     <div class="carousel">
       <div class="carousel-item active">
-        <img src="fam.jpg" alt="Beach">
-      
+        <img src="daddy.jpg" alt="Beach">
+        <div class="caption">Serenity Beach</div>
       </div>
       <div class="carousel-item">
-        <img src="daddy.jpg" alt="Ocean">
-        
+        <img src="maa.jpg" alt="Ocean">
+        <div class="caption">Ocean Waves</div>
       </div>
       <div class="carousel-item">
-        <img src="maa.jpg" alt="Sunset">
-       
+        <img src="fam.jpg" alt="Sunset">
+        <div class="caption">Golden Sunset</div>
       </div>
     </div>
     <div class="nav-dots" role="navigation" aria-label="Carousel slide controls"></div>
@@ -46,7 +46,7 @@
 
     .carousel-container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1080px;
       margin: 0 auto;
       position: relative;
       border-radius: 16px;
@@ -68,7 +68,7 @@
 
     .carousel img {
       width: 100%;
-      height: 600px;
+      height: 1350px;
       object-fit: cover;
       border-radius: 16px;
       display: block;
@@ -154,9 +154,13 @@
       right: 16px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1080px) {
+      .carousel-container {
+        max-width: 90vw;
+      }
+
       .carousel img {
-        height: 400px;
+        height: calc(90vw * 1.25); /* Maintain 4:5 ratio (1080/1350) */
       }
 
       .caption {
@@ -193,7 +197,7 @@
     }
   </style>
     
-  <script>
+ <script>
     const carousel = document.querySelector('.carousel');
     const items = document.querySelectorAll('.carousel-item');
     const dotsContainer = document.querySelector('.nav-dots');
