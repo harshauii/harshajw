@@ -760,7 +760,7 @@ label {
   // Monitor auth state and redirect to user page if logged in
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      window.location.href = 'user.html';  // Redirect to user page if logged in
+      window.location.href = 'story.html';  // Redirect to user page if logged in
     } else {
       successMessage.style.display = 'none';
     }
