@@ -475,40 +475,40 @@ I’m a reflection of my MOM and DAD’s love.</p>
         }
 
         function animateExpand(content, element, svg) {
-            content.style.display = 'block';
-            const contentHeight = content.scrollHeight;
-            content.style.height = '0';
-            content.style.opacity = '0';
-            content.style.padding = '0 24px';
-            element.style.background = '#F3F4F6';
-            element.style.borderColor = '#005B57';
-            element.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            svg.style.transform = 'rotate(180deg)';
-            svg.style.transition = 'transform 0.3s ease';
+    content.style.display = 'block';
+    content.style.padding = '24px'; // Apply padding immediately to calculate correct height
+    const contentHeight = content.scrollHeight; // Recalculate height after padding
+    content.style.height = '0';
+    content.style.opacity = '0';
+    element.style.background = '#F3F4F6';
+    element.style.borderColor = '#005B57';
+    element.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+    svg.style.transform = 'rotate(180deg)';
+    svg.style.transition = 'transform 0.3s ease';
 
-            let start;
-            const duration = 400; // Reduced for smoother feel
+    let start;
+    const duration = 400;
 
-            function step(timestamp) {
-                if (!start) start = timestamp;
-                const progress = Math.min((timestamp - start) / duration, 1);
-                const easedProgress = easeInOutCubic(progress);
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
 
-                content.style.height = `${contentHeight * easedProgress}px`;
-                content.style.opacity = easedProgress;
+        content.style.height = `${contentHeight * easedProgress}px`;
+        content.style.opacity = easedProgress;
 
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                } else {
-                    content.style.height = `${contentHeight}px`;
-                    content.style.opacity = '1';
-                    content.style.padding = '24px';
-                }
-            }
-
+        if (progress < 1) {
             requestAnimationFrame(step);
+        } else {
+            content.style.height = 'auto'; // Use 'auto' to handle dynamic content
+            content.style.opacity = '1';
+            content.style.padding = '24px';
+            content.style.overflow = 'visible'; // Ensure content isn’t clipped
         }
+    }
 
+    requestAnimationFrame(step);
+}
         function animateCollapse(content, element, svg) {
             const contentHeight = content.scrollHeight;
             content.style.height = `${contentHeight}px`;
