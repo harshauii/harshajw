@@ -26,158 +26,143 @@
       font-family: "IBM Plex Sans", sans-serif;
       color: #1D1D1D;
     }
-
-
-    /* ===========================================
-       APP CONTAINER (max-width: 524px, centered)
-       =========================================== */
-    .app-container {
-      width: 100%;
-      max-width: 524px;
-      margin: 0 auto;
-      background-color: #FFFFFF;
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
-
-    /* =========================
-       HEADER: Date + Greeting + Profile
-       ========================= */
-    .header {
-      width: 100%;
-      padding: 0 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-    .header .left {
-      display: flex;
-      flex-direction: column;
-    }
-    .header .date {
-      font-size: 16px;
-      line-height: 20px;
-      font-weight: 400;
-      color: #8F8F8F;
-      margin-bottom: 4px;
-    }
-    .header .greeting {
-      font-size: 36px;
-      line-height: 44px;
-      font-weight: 600;
-      color: #1D1D1D;
-    }
-
-    /* ==============================================
-       MEDIA QUERIES FOR SMALLER DEVICES (max-width: 400px)
-       ============================================== */
-    @media (max-width: 400px) {
-      .app-container {
-        padding-top: 12px;
-        padding-bottom: 12px;
-      }
-      /* Header adjustments */
-      .header {
-        padding: 0 12px;
-        margin-bottom: 16px;
-      }
-      .header .date {
-        font-size: 14px;
-        line-height: 18px;
-      }
-      .header .greeting {
-        font-size: 28px;
-        line-height: 34px;
-      }
-      .header .profile-wrapper .online-indicator {
-        width: 12px;
-        height: 12px;
-        top: 2px;
-        right: 2px;
-      }
-
-  
   </style>
 </head>
 <body>
-  <div class="app-container">
-    <!-- ================= HEADER ================= -->
-    <div class="header">
-      <div class="left">
-        <div class="date" id="date"></div>
-        <div class="greeting">Hi, Kathryn</div>
-      </div>
+ <div class="home-header-container">
+  <!-- ================= HEADER ================= -->
+  <div class="home-header">
+    <div class="home-header-left">
+      <div class="home-header-date" id="date"></div>
+      <div class="home-header-greeting">Hi, Kathryn</div>
     </div>
-    </div>
-  <!-- ================= SCRIPT TO DISPLAY ACTUAL DATE ================= -->
-  <script>
-    // Get today's date in "DD MMM YYYY" format (e.g., "06 Jun 2025")
-    const options = { day: "2-digit", month: "short", year: "numeric" };
-    const today = new Date().toLocaleDateString("en-GB", options);
-    document.getElementById("date").textContent = today;
-  </script>
+  </div>
+</div>
+
+<!-- ================= SCRIPT TO DISPLAY ACTUAL DATE ================= -->
+<script>
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  const today = new Date().toLocaleDateString("en-GB", options);
+  document.getElementById("date").textContent = today;
+</script>
+<style>
+  .home-header-container {
+    width: 100%;
+    max-width: 524px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding-top: 16px;
+    padding-bottom: 0px;
+  }
+
+  .home-header {
+    width: 100%;
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .home-header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-header-date {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #8F8F8F;
+    margin-bottom: 4px;
+  }
+
+  .home-header-greeting {
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 600;
+    color: #1D1D1D;
+  }
+
+ 
+</style>
+
   
   
   
   
   
-    <div class="btn-wrapper">
+    <a href="https://example.com/details" class="btn-wrapper">
   <div class="btn-still-not-sure">
     <span class="btn-still-not-sure__text">Today's class details.</span>
     <svg class="btn-still-not-sure__icon" viewBox="0 0 24 24">
       <path d="M7 17L17 7" />
       <path d="M7 7h10v10" />
     </svg>
-     </div>
   </div>
-  <style>
-      .btn-wrapper {
-      padding: 20px; /* padding on all 4 sides */
-      box-sizing: border-box;
-    }
-    .btn-still-not-sure {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background-color: #ffffff;
-      border-radius: 9999px;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      color: #0f2e2b;
-      cursor: pointer;
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      box-sizing: border-box;
-      
-    }
+</a>
 
-    .btn-still-not-sure__text {
-      flex-grow: 1;
-    }
+<style>
+  .btn-wrapper {
+    display: block;
+    padding: 0px 20px 20px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    .btn-still-not-sure__icon {
-      width: 20px;
-      height: 20px;
-      margin-left: 12px;
-      stroke: #111;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      flex-shrink: 0;
-    }
-  </style
+  .btn-still-not-sure {
+    border: 2px solid #41BF80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background-color: rgba(65, 191, 128, 0.15);
+    border-radius: 9999px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #0f2e2b;
+    cursor: pointer;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-still-not-sure:hover {
+    background-color: #002726;
+    color: #ffffff;
+  }
+
+  .btn-still-not-sure__text {
+    flex-grow: 1;
+  }
+
+  .btn-still-not-sure__icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 12px;
+    stroke: #111;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    flex-shrink: 0;
+  }
+  .btn-still-not-sure__icon:hover {
+    color: #ffffff;
+    stroke: #fffffff;
+  }
+</style>
+
 
   
   
   
   
-<div class="btn-wrapper">
+
   <div class="card-container">
     <div class="card">
       <div class="card-img-wrapper">
@@ -195,7 +180,7 @@
       </div>
     </div>
     </div>
-  </div>
+ 
   
   <style>
 
@@ -656,7 +641,9 @@ if (window.innerWidth <= 480) {
             </svg>
             text4
           </div>
-          <button class="dropdown-button">View Details</button>
+          <a href="https://example.com/details">
+           <button class="dropdown-button">View Details</button>
+          </a>
         </div>
       </div>
       <!-- Tile 2 -->
@@ -701,7 +688,9 @@ if (window.innerWidth <= 480) {
             </svg>
             text4
           </div>
-          <button class="dropdown-button">View Details</button>
+          <a href="https://example.com/details">
+           <button class="dropdown-button">View Details</button>
+          </a>
         </div>
       </div>
     </div>
