@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Audiobook Grid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      padding: 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: #1f2d38;
+      background: #FBFAF8;
+    }
+
+    .title-v1 {
+      margin: 20px 0 12px;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    /* DROPDOWN */
+    .dropdown-v1 {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-toggle-v1 {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: #E5E7EB;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      user-select: none;
+    }
+    .dropdown-toggle-v1:hover {
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+    }
+    .dropdown-menu-v1 {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      min-width: 160px;
+      display: none;
+      z-index: 10;
+    }
+    .dropdown-v1.open .dropdown-menu-v1 {
+      display: block;
+    }
+    .dropdown-menu-v1 li {
+      list-style: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+    .dropdown-menu-v1 li:hover {
+      background: #F3F4F6;
+    }
+
+    .dropdown-toggle-v1 svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s;
+    }
+    .dropdown-v1.open .dropdown-toggle-v1 svg {
+      transform: rotate(180deg);
+    }
+
+    /* GRID & CARDS */
+    .grid-v1 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px 16px;
+      margin-top: 12px;
+    }
+    .card-link-v1 {
+      text-decoration: none;
+      color: inherit;
+    }
+    .card-v1 {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .card__img-wrapper-v1 {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%),
+        var(--bg);
+    }
+    .card__img-wrapper-v1 img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card__title-v1 {
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      min-height: 1.2em;
+    }
+    .card__duration-v1 {
+      font-size: 0.82rem;
+      color: #4b5563;
+      font-weight: 300;
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding: 20px;
+      }
+      .dropdown-menu-v1 {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dropdown -->
+  <div class="dropdown-v1" id="categoryDropdown-v1">
+    <div class="dropdown-toggle-v1">
+      <span class="dropdown-label-v1">Topics</span>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L12 15L18 9" stroke="#002726" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <ul class="dropdown-menu-v1">
+      <li data-cat="all">All PDF's</li>
+      <li data-cat="ai">AI</li>
+      <li data-cat="linkedin">LINKEDIN</li>
+      <li data-cat="resume">RESUME</li>
+      <li data-cat="others">OTHERS</li>
+    </ul>
+  </div>
+
+  <!-- Heading -->
+  <h2 class="title-v1" id="gridTitle-v1">All PDF's</h2>
+
+  <!-- Grid -->
+  <div class="grid-v1" id="bookGrid-v1">
+
+    <a href="https://example.com/loyalty" class="card-link-v1" data-cat="business">
+      <div class="card-v1" style="--bg:#FEF3C7;">
+        <div class="card__img-wrapper-v1">
+          <img src="https://d3kl8zsmmx4oop.cloudfront.net/Product_mgmt_thumb_1405b313c1_61973963e2.webp" alt="">
+        </div>
+        <div class="card__title-v1">The Loyalty Leap: Customer Engagement</div>
+        <div class="card__duration-v1">14 mins</div>
+      </div>
+    </a>
+
+    <a href="https://example.com/networking" class="card-link-v1" data-cat="networking">
+      <div class="card-v1" style="--bg:#FCE7F3;">
+        <div class="card__img-wrapper-v1">
+          <img src="https://example.com/networking.jpg" alt="">
+        </div>
+        <div class="card__title-v1">New Business Networking</div>
+        <div class="card__duration-v1">14 mins</div>
+      </div>
+    </a>
+
+    <a href="https://example.com/branding" class="card-link-v1" data-cat="branding">
+      <div class="card-v1" style="--bg:#FEF3C7;">
+        <div class="card__img-wrapper-v1">
+          <img src="https://example.com/branding.jpg" alt="">
+        </div>
+        <div class="card__title-v1">Breakthrough Branding: Strategies</div>
+        <div class="card__duration-v1">13 mins</div>
+      </div>
+    </a>
+
+    <a href="https://example.com/windfall" class="card-link-v1" data-cat="finance">
+      <div class="card-v1" style="--bg:#D1FAE5;">
+        <div class="card__img-wrapper-v1">
+          <img src="https://example.com/windfall.jpg" alt="">
+        </div>
+        <div class="card__title-v1">The 1% Windfall</div>
+        <div class="card__duration-v1">12 mins</div>
+      </div>
+    </a>
+
+  </div>
+
+  <script>
+    const dd = document.getElementById('categoryDropdown-v1');
+    const toggle = dd.querySelector('.dropdown-toggle-v1');
+    const menu = dd.querySelector('.dropdown-menu-v1');
+    const title = document.getElementById('gridTitle-v1');
+    const cards = document.querySelectorAll('.card-link-v1');
+
+    toggle.addEventListener('click', () => {
+      dd.classList.toggle('open');
+    });
+
+    document.addEventListener('click', e => {
+      if (!dd.contains(e.target)) dd.classList.remove('open');
+    });
+
+    menu.querySelectorAll('li').forEach(li => {
+      li.addEventListener('click', () => {
+        const cat = li.dataset.cat;
+        title.textContent = li.textContent;
+        cards.forEach(c => {
+          c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+        });
+        dd.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
