@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tasks & Companies</title>
+  <!-- IBM Plex Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #ffffff;
+      --text-primary: #1f1f1f;
+      --text-secondary: #666666;
+
+      --cat-1-bg: #fff7e6;
+      --cat-2-bg: #e6f7ee;
+      --cat-3-bg: #e6f0ff;
+      --cat-4-bg: #fce6f0;
+
+      --card-bg: rgba(255,255,255,0.9);
+      --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      display: flex;
+      justify-content: center;
+      padding: 24px 0;
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 0 16px;
+    }
+
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 8px;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-card {
+      flex: 0 0 140px;
+      height: 140px;
+      border-radius: 16px;
+      padding: 16px;
+      background: var(--cat-1-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      scroll-snap-align: start;
+    }
+    .cat-card:nth-child(2) { background: var(--cat-2-bg); }
+    .cat-card:nth-child(3) { background: var(--cat-3-bg); }
+    .cat-card:nth-child(4) { background: var(--cat-4-bg); }
+    .cat-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .cat-card p { font-size: 13px; color: var(--text-secondary); }
+    .cat-img {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      object-fit: contain;
+    }
+
+    /* Ongoing Tasks Heading */
+    .section-header.ongoing {
+      margin-top: 16px;
+    }
+
+    /* Company Cards */
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 16px;
+      padding: 16px;
+      background: var(--card-bg);
+      backdrop-filter: blur(4px);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      overflow: hidden;
+      width: 100%;
+      text-align: left;
+    }
+    .card:hover, .card:focus {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .card:focus-visible {
+      outline: 2px solid #1A73E8;
+      outline-offset: 2px;
+    }
+    .card.nyt    { background: linear-gradient(145deg,#FEF8E6,#FDF6D8); }
+    .card.google { background: linear-gradient(145deg,#E9E6F7,#E0DDF5); }
+    .card.wallgrace { background: linear-gradient(145deg,#FBEFEE,#F9E8E7); }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .icon-wrapper {
+      width: 56px; height: 56px;
+      background: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .icon-wrapper img {
+      max-width: 32px; max-height: 32px;
+      object-fit: contain;
+    }
+
+    .info-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;      /* force left alignment */
+      text-align: left;             /* ensure text is flush left */
+    }
+.company-name {
+  font-size: 16px;   /* matched with Categories h3 */
+  font-weight: 500;
+  color: #121212;
+  margin-bottom: 4px;
+  transition: color 0.3s;
+}
+
+.sub-text {
+  font-size: 13px;   /* same as Categories p */
+  color: #4B5563;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+    .card:hover .company-name,
+    .card:focus .company-name {
+      color: #1A73E8;
+    }
+    .card:hover .sub-text,
+    .card:focus .sub-text {
+      opacity: 1;
+    }
+
+    .arrow-wrapper {
+      width: 40px; height: 40px;
+      background: rgba(65,191,128,0.15);
+      border: 2px solid #41BF80;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .card:hover .arrow-wrapper,
+    .card:focus .arrow-wrapper {
+      background: #002726;
+      border-color: #002726;
+    }
+    .arrow-wrapper svg {
+      width: 20px; height: 20px;
+      stroke: #002726; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+    .card:hover .arrow-wrapper svg,
+    .card:focus .arrow-wrapper svg {
+      stroke: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <!-- Categories -->
+    <div class="section-header">
+      <h2>Categories</h2>
+    </div>
+    <div class="categories">
+      <div class="cat-card">
+        <h3>Mobile App</h3>
+        <p>10 Tasks</p>
+        <img class="cat-img" src="#" alt="">
+      </div>
+      <div class="cat-card">
+        <h3>Website</h3>
+        <p>05 Tasks</p>
+        <img class="cat-img" src="#" alt="">
+      </div>
+      <div class="cat-card">
+        <h3>Dashboard</h3>
+        <p>08 Tasks</p>
+        <img class="cat-img" src="#" alt="">
+      </div>
+      <div class="cat-card">
+        <h3>API</h3>
+        <p>12 Tasks</p>
+        <img class="cat-img" src="#" alt="">
+      </div>
+    </div>
+
+    <!-- Ongoing Tasks Header -->
+    <div class="section-header ongoing">
+      <h2>Ongoing Tasks</h2>
+    </div>
+
+    <!-- Company Cards -->
+    <div class="cards-container">
+      <button class="card nyt">
+        <div class="card-left">
+          <div class="icon-wrapper">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-new-york-times-282250.png" alt="NYT Logo">
+          </div>
+          <div class="info-block">
+            <div class="company-name">New York Times</div>
+            <div class="sub-text">32 Applicants</div>
+          </div>
+        </div>
+        <div class="arrow-wrapper">
+          <svg viewBox="0 0 24 24"><path d="M5 12H19M19 12L12 5M19 12L12 19"/></svg>
+        </div>
+      </button>
+
+      <button class="card google">
+        <div class="card-left">
+          <div class="icon-wrapper">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-google-logo-icon-download-in-svg-png-gif-file-formats--brands-pack-logos-icons-189824.png" alt="Google Logo">
+          </div>
+          <div class="info-block">
+            <div class="company-name">Google LLC</div>
+            <div class="sub-text">45 Applicants</div>
+          </div>
+        </div>
+        <div class="arrow-wrapper">
+          <svg viewBox="0 0 24 24"><path d="M5 12H19M19 12L12 5M19 12L12 19"/></svg>
+        </div>
+      </button>
+
+      <button class="card wallgrace">
+        <div class="card-left">
+          <div class="icon-wrapper">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-vintage-282250.png" alt="WallGrace Logo">
+          </div>
+          <div class="info-block">
+            <div class="company-name">WallGrace Vintage</div>
+            <div class="sub-text">12 Applicants</div>
+          </div>
+        </div>
+        <div class="arrow-wrapper">
+          <svg viewBox="0 0 24 24"><path d="M5 12H19M19 12L12 5M19 12L12 19"/></svg>
+        </div>
+      </button>
+    </div>
+
+  </div>
+</body>
+</html>
