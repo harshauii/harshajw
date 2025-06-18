@@ -12,29 +12,32 @@
   />
 
   <style>
-  /* Hide mobile content by default */
-.show-on-mobile {
-  display: none;
-}
+ /* Default: hide mobile content */
+    .mobile-content {
+      display: none;
+    }
 
-/* Show message on desktop/tablet */
-.show-on-desktop {
-  display: block;
-  font-size: 24px;
-  text-align: center;
-  padding: 50px;
-}
+    /* Default: show desktop/tablet message */
+    .not-mobile-message {
+      display: block;
+      font-size: 24px;
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
 
-/* On mobile (less than 768px) */
-@media (max-width: 767px) {
-  .show-on-mobile {
-    display: block;
-  }
+    /* On mobile: show content, hide message */
+    @media (max-width: 767px) {
+      .mobile-content {
+        display: block;
+        padding: 20px;
+        font-size: 18px;
+      }
 
-  .show-on-desktop {
-    display: none;
-  }
-}
+      .not-mobile-message {
+        display: none;
+      }
+    }
 
 
 
@@ -59,10 +62,13 @@
 </head>
 <body>
  <body>
-  <div class="show-on-desktop">View in mobile</div>
+  <!-- Message for tablet/desktop -->
+  <div class="not-mobile-message">
+    View in mobile
+  </div>
 
-  <div class="show-on-mobile">
-
+  <!-- Real content only visible on phones -->
+  <div class="mobile-content">
 
 
 
@@ -1450,7 +1456,6 @@ if (window.innerWidth <= 480) {
 </script>
 
 
-    </div>
-</body>
+  </div>
 </body>
 </html>
