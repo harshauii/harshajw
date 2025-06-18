@@ -11,54 +11,33 @@
     rel="stylesheet"
   />
 
-  <style>
- /* Default: hide mobile content */
-    .mobile-content {
-      display: none;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    /* Default: show desktop/tablet message */
-    .body {
-      display: block;
-      font-size: 24px;
-      text-align: center;
-      padding: 50px;
-      color: #333;
-    }
+  html,
+  body {
+    background-color: #FFFFFF;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #1D1D1D;
+  }
 
-    /* On mobile: show content, hide message */
-    @media (max-width: 767px) {
-      .mobile-content {
-        display: block;
-        padding: 20px;
-        font-size: 18px;
-      }
+  /* Hide body content by default */
+  body {
+    display: none;
+  }
 
-      .not-mobile-message {
-        display: none;
-      }
-    }
-
-
-
-    
-
-    
-    /* =====================================================
-       GLOBAL RESET & BODY
-       ===================================================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html,
+  /* Show body content only on mobile (max-width: 767px) */
+  @media (max-width: 767px) {
     body {
-      background-color: #FFFFFF;
-      font-family: "IBM Plex Sans", sans-serif;
-      color: #1D1D1D;
+      display: block;
     }
-  </style>
+  }
+</style>
+
 </head>
 <body>
  <body>
