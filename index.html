@@ -12,6 +12,39 @@
   />
 
   <style>
+    /* Default: hide everything */
+body, .main-content {
+  display: none;
+}
+
+/* Show content only on mobile (less than 768px) */
+@media (max-width: 767px) {
+  .main-content {
+    display: block;
+  }
+
+  .mobile-message {
+    display: none;
+  }
+}
+
+/* Show "View in mobile" on tablet and desktop (768px and up) */
+@media (min-width: 768px) {
+  .mobile-message {
+    display: block;
+    font-size: 24px;
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+
+
+
+
+    
+
+    
     /* =====================================================
        GLOBAL RESET & BODY
        ===================================================== */
@@ -29,6 +62,9 @@
   </style>
 </head>
 <body>
+  <div class="mobile-message">View in mobile</div>
+
+<div class="main-content">
  <div class="home-header-container">
   <!-- ================= HEADER ================= -->
   <div class="home-header">
@@ -1408,6 +1444,6 @@ if (window.innerWidth <= 480) {
     }, 5400);
   });
 </script>
-
+</div>
 </body>
 </html>
