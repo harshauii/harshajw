@@ -12,35 +12,29 @@
   />
 
   <style>
-    /* Default: hide everything */
-body, .main-content {
+  /* Hide mobile content by default */
+.show-on-mobile {
   display: none;
 }
 
-/* Show content only on mobile (less than 768px) */
+/* Show message on desktop/tablet */
+.show-on-desktop {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  padding: 50px;
+}
+
+/* On mobile (less than 768px) */
 @media (max-width: 767px) {
-  .main-content {
+  .show-on-mobile {
     display: block;
   }
 
-  .mobile-message {
+  .show-on-desktop {
     display: none;
   }
 }
-
-/* Show "View in mobile" on tablet and desktop (768px and up) */
-@media (min-width: 768px) {
-  .mobile-message {
-    display: block;
-    font-size: 24px;
-    text-align: center;
-    padding: 2rem;
-  }
-}
-body, .main-content {
-  display: none;
-}
-
 
 
 
@@ -64,10 +58,18 @@ body, .main-content {
   </style>
 </head>
 <body>
-  <div class="mobile-message">View in mobile</div>
+ <body>
+  <div class="show-on-desktop">View in mobile</div>
 
-<div class="main-content">
- <div class="home-header-container">
+  <div class="show-on-mobile">
+
+
+
+
+
+
+
+   
   <!-- ================= HEADER ================= -->
   <div class="home-header">
     <div class="home-header-left">
@@ -1446,6 +1448,9 @@ if (window.innerWidth <= 480) {
     }, 5400);
   });
 </script>
-</div>
+
+
+    </div>
+</body>
 </body>
 </html>
